@@ -8,7 +8,9 @@ table {
 }
 
 caption {
+  font-size: 30px;
   font-weight: bold;
+  padding: 20px;
 }
 
 table td {
@@ -25,4 +27,8 @@ table th {
 .tablefoot {
   padding: 0;
   border-bottom: 3px solid #009688;
+}
+
+tr {
+  text-align: center;
 }
