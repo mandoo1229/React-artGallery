@@ -8,6 +8,7 @@ const ImageView = () => {
   const { id } = useParams();
 
   // 백엔드에서 API를 가져옵니다.
+  // 파라미터를 id로 받습니다.
   useEffect(() => {
     axios
       .get(`${API_URL}/api/view/${id}`)

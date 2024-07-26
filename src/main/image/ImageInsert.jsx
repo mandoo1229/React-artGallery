@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { API_URL } from "../../config";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-// import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 import axios from "axios";
 import Button from "@mui/material/Button";
@@ -56,13 +55,6 @@ const ImageInsert = () => {
         파일선택
         <VisuallyHiddenInput type="file" />
       </Button>
-
-      {/* <input
-        type="file"
-        name="image"
-        onChange={(e) => setImage(e.target.files[0])}
-      /> */}
-
       <Button
         type="button"
         variant="contained"
