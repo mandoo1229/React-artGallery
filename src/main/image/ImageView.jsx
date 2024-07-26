@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { API_URL } from "../../config";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const ImageView = () => {
   const [image, setImage] = useState([]);
-  const [id, setId] = useState(3);
+  const { id } = useParams();
 
   // 백엔드에서 API를 가져옵니다.
   useEffect(() => {

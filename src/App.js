@@ -8,8 +8,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/image" element={<ImageView />} />
-        <Route path="/imageinsert" element={<ImageInsert />} />
+        <Route path="/view/:id" element={<ImageView />} />
+        <Route path="/upload" element={<ImageInsert />} />
       </Routes>
     </BrowserRouter>
   );

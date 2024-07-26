@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { API_URL } from "../config";
 import "../style/table.css";
 import axios from "axios";
@@ -14,8 +14,10 @@ const Main = () => {
     axios
       .get(`${API_URL}/api/view`)
       .then((response) => {
-        console.log(response.data);
         setImageList(response.data);
+        console.log(response.data);
+
+        console.log(imageList);
       })
       .catch((error) => {
         console.log(error);
@@ -35,13 +37,16 @@ const Main = () => {
         </thead>
         <tbody>
           {imageList.map((imageList) => (
-            <tr style={{ textAlign: "center" }} key={imageList.id}>
+            <tr
+              key={imageList.id}
+              onClick={() => navigate(`/view/${imageList.id}`)}
+            >
               <td>{imageList.id}</td>
               <td>
                 <img
                   style={{
-                    width: "200px",
-                    height: "200px",
+                    width: "100px",
+                    height: "100px",
                     margin: "0 auto",
                   }}
                   src={`http://localhost:8080/upload/${imageList.saveNm}`}
@@ -57,14 +62,14 @@ const Main = () => {
         <Button
           variant="contained"
           color="success"
-          onClick={() => navigate("/image")}
+          onClick={() => navigate("/view")}
         >
           이미지 보기
         </Button>
         <Button
           variant="contained"
           color="success"
-          onClick={() => navigate("/imageinsert")}
+          onClick={() => navigate("/upload")}
         >
           이미지 등록
         </Button>
