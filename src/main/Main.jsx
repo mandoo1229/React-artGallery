@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { API_URL } from "../config";
 import "../style/table.css";
 import axios from "axios";
@@ -16,8 +16,6 @@ const Main = () => {
       .then((response) => {
         setImageList(response.data);
         console.log(response.data);
-
-        console.log(imageList);
       })
       .catch((error) => {
         console.log(error);
@@ -50,6 +48,7 @@ const Main = () => {
                     margin: "0 auto",
                   }}
                   src={`http://localhost:8080/upload/${imageList.saveNm}`}
+                  alt="artImage"
                 />
               </td>
               <td>{imageList.orgNm}</td>

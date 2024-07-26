@@ -19,7 +19,7 @@ const ImageView = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     console.log(image);
@@ -28,7 +28,10 @@ const ImageView = () => {
   return (
     <div>
       <div>이미지 테스트용</div>
-      <img src={`http://localhost:8080/upload/${image.saveNm}`} />
+      <img
+        src={`http://localhost:8080/upload/${image.saveNm}`}
+        alt="artImage"
+      />
       <div>{image.orgNm}</div>
     </div>
   );
