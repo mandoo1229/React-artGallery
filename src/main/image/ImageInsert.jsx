@@ -47,7 +47,7 @@ const ImageInsert = () => {
       <div>이미지 등록</div>
       <Button
         component="label"
-        role={undefined}
+        // role={undefined}
         variant="contained"
         name="image"
         onChange={(e) => setImage(e.target.files[0])}
