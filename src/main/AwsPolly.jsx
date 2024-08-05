@@ -14,6 +14,7 @@ const polly = new AWS.Polly();
 
 const AwsPolly = () => {
   const [text, setText] = useState("");
+  const [audioFile, setAudioFile] = useState();
 
   const convertTextToSpeech = () => {
     polly.synthesizeSpeech(
@@ -21,12 +22,14 @@ const AwsPolly = () => {
         Text: text,
         OutputFormat: "mp3",
         VoiceId: "Seoyeon",
+        Engine: "neural",
       },
       (error, data) => {
         if (error) {
           console.log(error);
         } else {
           console.log(data);
+          setAudioFile(data);
         }
       }
     );
@@ -41,7 +44,7 @@ const AwsPolly = () => {
         setText={setText}
         convertTextToSpeech={convertTextToSpeech}
       />
-      <AudioPlayer />
+      <AudioPlayer audioFile={audioFile} />
     </div>
   );
 };

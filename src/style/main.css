@@ -21,3 +21,41 @@ textarea {
   border-radius: 10px;
   font-size: 14px;
 }
+
+.audio-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.audio-button {
+  font-size: 45px;
+  border: transparent;
+  background: transparent;
+}
+
+.audio-button:disabled {
+  opacity: 0.5;
+}
+
+.icon-btn {
+  color: #5095f8;
+}
+
+.progress-container {
+  width: 100%;
+  background-color: #ccc;
+  height: 8px;
+  margin: 0 0 10px;
+}
+
+.progress-bar {
+  background-color: #007bff;
+  height: 100%;
+  width: 50%;
+}
