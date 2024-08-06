@@ -9,7 +9,7 @@ const Section = ({ text, setText, convertTextToSpeech }) => {
         const btnEl = document.querySelector(".btn-convert");
         setTimeout(() => {
           btnEl.click();
-        }, 1000);
+        });
       } catch (error) {
         console.log("에러" + error);
       }
