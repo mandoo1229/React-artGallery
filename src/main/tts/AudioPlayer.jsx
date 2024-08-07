@@ -1,14 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FaPlay } from "react-icons/fa";
-import { FaPause } from "react-icons/fa";
-import { FaCloudDownloadAlt } from "react-icons/fa";
-
+import { FaPlay, FaPause } from "react-icons/fa";
 import "../../style/main.css";
 
 const AudioPlayer = ({ audioFile }) => {
   const [isPlay, setIsPlay] = useState(false);
-  const [currentTime, setCurretnTime] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(0);
 
   const audioRef = useRef();
   const progressBarRef = useRef();
@@ -23,7 +21,7 @@ const AudioPlayer = ({ audioFile }) => {
       const audio = audioRef.current;
       audio.src = audioURL;
 
-      audio.addEventListener("loaddate", () => {
+      audio.addEventListener("loadeddata", () => {
         setDuration(audio.duration);
       });
 
@@ -38,13 +36,13 @@ const AudioPlayer = ({ audioFile }) => {
   const updateProgressBar = () => {
     const audio = audioRef.current;
     const progress = (audio.currentTime / audio.duration) * 100;
-
-    setCurretnTime(audio.currentTime);
+    setCurrentTime(audio.currentTime);
     progressBarRef.current.style.width = `${progress}%`;
   };
 
   const togglePlay = () => {
     const audio = audioRef.current;
+
     if (isPlay) {
       audio.pause();
     } else {
@@ -53,7 +51,29 @@ const AudioPlayer = ({ audioFile }) => {
     setIsPlay(!isPlay);
   };
 
-  const downloadAudio = () => {};
+  const handleVolumeChange = (e) => {
+    const volumeValue = e.target.value;
+    setVolume(volumeValue);
+    audioRef.current.volume = volumeValue;
+  };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        window.addEventListener("click", function () {});
+        const btnEl = document.querySelector(".audio-button");
+        setTimeout(() => {
+          btnEl.click();
+          console.log("setTimeOut 실행");
+        }, 3000);
+      } catch (error) {
+        console.log(error);
+      }
+      return () => {
+        window.removeEventListener("click", function () {});
+      };
+    })();
+  }, []);
 
   return (
     <div className="audio-container">
@@ -69,7 +89,7 @@ const AudioPlayer = ({ audioFile }) => {
         <button
           className="audio-button"
           disabled={!audioFile}
-          onClick={() => togglePlay()}
+          onClick={togglePlay}
         >
           {isPlay ? (
             <FaPause className="icon-btn" />
@@ -77,14 +97,16 @@ const AudioPlayer = ({ audioFile }) => {
             <FaPlay className="icon-btn" />
           )}
         </button>
-
-        <button
-          className="audio-button"
-          disabled={!audioFile}
-          onClick={() => downloadAudio()}
-        >
-          <FaCloudDownloadAlt className="icon-btn" />
-        </button>
+      </div>
+      <div className="volume-control">
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={volume}
+          onChange={handleVolumeChange}
+        />
       </div>
     </div>
   );
